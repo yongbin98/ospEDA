@@ -2,30 +2,27 @@ clear all;
 close all;
 clc;
 
-load('EDAdata.mat');
+fs = 4;
+t = 0:1/fs:360;
+eda = 1 + sin(2*pi*0.1/fs*t) + t*0.05;
 
-[tonic_osp, driver_osp, phasic_osp, lag] = ospEDA(EDA, fs);
-
-meanEDA = mean(EDA); stdEDA = std(EDA);
-[phasic_cvx, driver_cvx, tonic_cvx, ~, ~, ~, ~] = cvxEDA(zscore(EDA), 1/fs);
-phasic_cvx = phasic_cvx*stdEDA;
-tonic_cvx = tonic_cvx*stdEDA + meanEDA;
+[tonic_osp, driver_osp, phasic_osp, lag] = ospEDA(eda, fs);
 
 figure;
 subplot(2,1,1);
 hold on;
-plot(time, tonic_cvx, 'LineWidth', 1.5, 'DisplayName', 'cvxEDA');
-plot(time, tonic_osp, 'LineWidth', 1.5, 'DisplayName', 'OSP');
-plot(time, EDA, 'k--', 'LineWidth', 1, 'DisplayName', 'EDA reference');
+plot(t, tonic_osp, 'LineWidth', 1.5, 'DisplayName', 'OSP');
+plot(t, eda, 'k--', 'LineWidth', 1, 'DisplayName', 'reference');
 legend('Location', 'best');
 title('Tonic Components');
+xlabel('Time [s]');
 ylabel('EDA [μS]');
 grid on;
 
 subplot(2,1,2);
 hold on;
-plot(time, phasic_cvx, 'LineWidth', 1.5, 'DisplayName', 'cvxEDA');
-plot(time, phasic_osp, 'LineWidth', 1.5, 'DisplayName', 'OSP');
+plot(t, phasic_osp, 'LineWidth', 1.5, 'DisplayName', 'Phasic');
+bar(t, driver_osp, 'BarWidth', 2, 'DisplayName', 'Driver');
 legend('Location', 'best');
 title('Phasic Components');
 xlabel('Time [s]');

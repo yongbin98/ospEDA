@@ -1,15 +1,12 @@
 function [tonic_osp, driver_osp, phasic_osp, lag] = ospEDA(EDA, sr, varargin)
 %   EDA signal decomposition method using Orthogonal Subspace Projection (OSP)
-%   [tonic_osp, driver_osp, phasic_osp] = ospEDA(EDA, sr, varargin)
+%   [tonic_osp, driver_osp, phasic_osp, lag] = ospEDA(EDA, sr, varargin)
 %   
-%   Decomposes electrodermal activity (EDA) signal into tonic and phasic
-%   components using optimized spline peak method.
-%
 %   INPUTS:
 %   EDA      - EDA signal vector
 %   sr       - Sampling rate (Hz)
 %   varargin - Optional parameters [tau1, tau2, lambda, kernel_duration, prominence, dist, pct]
-%              Default: [2, 0.7, 1e-2, 10, 1e-1, 10, 5]
+%              Default: [2, 0.7, 1e-2, 10, 5e-2, 10, 5]
 %
 %   OUTPUTS:
 %   tonic_osp  - Tonic (slow-varying baseline) component
@@ -26,16 +23,15 @@ function [tonic_osp, driver_osp, phasic_osp, lag] = ospEDA(EDA, sr, varargin)
     params(i) = varargin(i);
     [tau1, tau2, lambda, kernel_duration, prominence, dist, pct] = deal(params{:});
     
-    %% Preprocessing: Downsample and detrend
-    fs = 4; % Target sampling frequency
+    %% Preprocessing: Downsample and detrend    
+    EDA = EDA(:);
+    fs = 4;
     deci_rate = floor(sr/fs);
     EDA_ds = decimate(EDA, deci_rate);
-    EDA_detrended = detrend(EDA_ds, 2); % Remove quadratic trends
-    
+    EDA_detrended = detrend(EDA_ds, 2);    
     t_ds = (0:length(EDA_ds)-1) / fs;
 
     %% Valley detection
-    % Find valleys (negative peaks) in detrended signal
     [~, locs_ds] = findpeaks(-EDA_detrended, ...
                          'MinPeakProminence', prominence, ...
                          'MinPeakDistance', fs*dist);
@@ -48,26 +44,21 @@ function [tonic_osp, driver_osp, phasic_osp, lag] = ospEDA(EDA, sr, varargin)
     new_locs = [];
     
     for i = 1:num_windows
-        % Define window boundaries
         ST = (i-1) * window_samples + 1;
-        ED = i * window_samples; % Handle last window
+        ED = i * window_samples;
         
-        % Check if this window already has detected peaks
         has_peak_in_window = any(locs_ds >= ST & locs_ds <= ED);
         
         if ~has_peak_in_window
-            % No peak found in this window, find local minimum
-            if ST <= length(EDA_detrended) % Ensure valid window
+            if ST <= length(EDA_detrended) 
                 window_data = EDA_detrended(ST:ED);
                 [~, auto_locs] = min(window_data);
                 absolute_loc = auto_locs + ST - 1;
-                % absolute_loc = round((ST+ED)/2);
                 new_locs = [new_locs, absolute_loc];
             end
         end
     end    
         
-    % Add boundary conditions
     if ~isempty(locs_ds) && locs_ds(1) > fs*10
         new_locs = [1, new_locs];
     end
@@ -75,7 +66,6 @@ function [tonic_osp, driver_osp, phasic_osp, lag] = ospEDA(EDA, sr, varargin)
         new_locs = [new_locs, length(EDA_detrended)];
     end
     
-    % Combine and sort all locations
     all_locs_ds = [locs_ds(:)', new_locs];
     locs_ds = sort(unique(all_locs_ds));
     
