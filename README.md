@@ -10,4 +10,4 @@ To see a basic example, simply run: run_OSP_Algorithm.m
 
 # Reference
 This work is based on the manuscript:
-**Y. Lee, Y. Kong, and K. H. Chon**, "ospEDA: Orthogonal Subspace Projection for Electrodermal Activity Decomposition," submitted to IEEE Transactions on Affective Computing, 2025.
+*Y. Lee, Y. Kong, and K. H. Chon*, "ospEDA: Orthogonal Subspace Projection for Electrodermal Activity Decomposition," submitted to IEEE Transactions on Affective Computing, 2025.
