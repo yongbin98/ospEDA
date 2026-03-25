@@ -4,6 +4,8 @@ ospEDA is a MATLAB implementation of the *Orthogonal Subspace Projection-based E
 
 This method separates tonic and phasic components of the EDA signal.
 
+The ospEDA algorithm will be uploaded later.
+
 # Quick Start
 To visualize example simulated EDA signals, run: `plot_examples.m`
 
