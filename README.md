@@ -15,4 +15,4 @@ To generate simulated EDA data, run: `generate_simulated_EDA.m`
 
 # Reference
 This work is based on the manuscript:
-*Y. Lee, Y. Kong, and K. H. Chon*, "ospEDA: Orthogonal Subspace Projection for Electrodermal Activity Decomposition," submitted to IEEE Transactions on Affective Computing, 2025.
+*Y. Lee, Y. Kong, and K. H. Chon*, "ospEDA: Orthogonal Subspace Projection for Electrodermal Activity Decomposition," submitted to IEEE Transactions on Biomedical Engineering, 2026.
