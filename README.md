@@ -28,7 +28,7 @@ UDM: https://github.com/huisophiewang/UDM_EDA
 
 If this repository is helpful for your research, please cite:
 
-Lee, Y., Kong, Y., & Chon, K. H. (2026). ospEDA: Orthogonal Subspace Projection for Electrodermal Activity Decomposition. *IEEE Transactions on Biomedical Engineering*. In press.
+Lee, Y., Kong, Y., & Chon, K. H. (2026). ospEDA: Orthogonal Subspace Projection for Electrodermal Activity Decomposition. *IEEE Transactions on Biomedical Engineering*, Early Access. https://doi.org/10.1109/TBME.2026.3703619
 
 BibTeX:
 
@@ -38,5 +38,8 @@ BibTeX:
   author={Lee, Yongbin and Kong, Youngsun and Chon, Ki H.},
   journal={IEEE Transactions on Biomedical Engineering},
   year={2026},
-  note={In press}
+  pages={1--13},
+  doi={10.1109/TBME.2026.3703619},
+  note={Early Access}
 }
+```
