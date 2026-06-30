@@ -15,9 +15,13 @@ To generate simulated EDA data, run: `generate_simulated_EDA.m`
 
 # Other EDA Decomposition Methods
 Ledalab-CDA and DDA: http://www.ledalab.de/
+
 sparsEDA: https://github.com/fhernandogallego/sparsEDA
+
 cvxEDA: https://github.com/lciti/cvxEDA
+
 BayesianEDA: https://github.com/computational-medicine-lab/BayesianEDA-For-Sharing
+
 UDM: https://github.com/huisophiewang/UDM_EDA
 
 ## Citation
