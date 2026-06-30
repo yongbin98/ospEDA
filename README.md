@@ -4,7 +4,7 @@ ospEDA is a MATLAB implementation of the *Orthogonal Subspace Projection-based E
 
 This method separates tonic and phasic components of the EDA signal.
 
-The ospEDA algorithm will be uploaded later.
+For research-related inquiries, please contact Yongbin Lee (yongbin.lee@uconn.edu).
 
 # Quick Start
 To visualize example simulated EDA signals, run: `plot_examples.m`
@@ -13,6 +13,26 @@ To evaluate performance metrics on simulated EDA data, run: `evaluation_algorith
 
 To generate simulated EDA data, run: `generate_simulated_EDA.m`
 
-# Reference
-This work is based on the manuscript:
-*Y. Lee, Y. Kong, and K. H. Chon*, "ospEDA: Orthogonal Subspace Projection for Electrodermal Activity Decomposition," submitted to IEEE Transactions on Biomedical Engineering, 2026.
+# Other EDA Decomposition Methods
+Ledalab-CDA and DDA: http://www.ledalab.de/
+sparsEDA: https://github.com/fhernandogallego/sparsEDA
+cvxEDA: https://github.com/lciti/cvxEDA
+BayesianEDA: https://github.com/computational-medicine-lab/BayesianEDA-For-Sharing
+UDM: https://github.com/huisophiewang/UDM_EDA
+
+## Citation
+
+If this repository is helpful for your research, please cite:
+
+Lee, Y., Kong, Y., & Chon, K. H. (2026). ospEDA: Orthogonal Subspace Projection for Electrodermal Activity Decomposition. *IEEE Transactions on Biomedical Engineering*. In press.
+
+BibTeX:
+
+```bibtex
+@article{lee2026ospeda,
+  title={ospEDA: Orthogonal Subspace Projection for Electrodermal Activity Decomposition},
+  author={Lee, Yongbin and Kong, Youngsun and Chon, Ki H.},
+  journal={IEEE Transactions on Biomedical Engineering},
+  year={2026},
+  note={In press}
+}
